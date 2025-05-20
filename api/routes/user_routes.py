@@ -15,17 +15,15 @@ def create_user():
         cursor = conn.cursor()
         cursor.execute("""
             INSERT INTO UserProfile (
-                email, pathology, sensitivity_level,
-                age, weight, activity_level, created_at
+                email, pathology,
+                age, created_at, family_members
             ) VALUES (?, ?, ?, ?, ?, ?, ?)
         """, (
             data.get('email'),
             data.get('pathology'),
-            data.get('sensitivity_level'),
             data.get('age'),
-            data.get('weight'),
-            data.get('activity_level'),
-            data.get('created_at')
+            data.get('created_at'),
+            data.get('family_members')
         ))
         conn.commit()
         return jsonify({"message": "Utilisateur ajouté avec succès."}), 201
