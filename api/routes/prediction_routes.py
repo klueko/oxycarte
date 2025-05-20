@@ -43,9 +43,10 @@ def predict_personalized():
     polluant_mapping = {
         "asthme": "PM25",
         "bpco": "PM10",
-        "allergie": "NO2"
+        "bronchite chronique": "NO2"
     }
-    pollutant = polluant_mapping.get(pathology, "PM25")
+    pathology_cleaned = pathology.strip().lower()
+    pollutant = polluant_mapping.get(pathology_cleaned, "PM25")
 
     # Charger les données SQL Server
     query = f"""

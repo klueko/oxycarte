@@ -17,11 +17,38 @@
 
 	let email = "mal.kdsov@gmail.com";
 
+	function getAgeCategory(age: number): 'child' | 'adult' | 'senior' {
+		if (age < 12) return 'child';
+		if (age >= 65) return 'senior';
+		return 'adult';
+	}
+
+	function getPollutantsByAge(age: number): string[] {
+		const category = getAgeCategory(age);
+
+		if (category === 'child') return ['PM25', 'NO2', 'O3', 'PM10'];
+		if (category === 'senior') return ['PM25', 'PM10', 'O3', 'SO2'];
+
+		return ['PM25'];
+	}
+
 	function getPollutantsForPathology(pathology: string): string[] {
 		if (pathology === 'asthme') return ['PM25', 'NO2', 'O3'];
 		if (pathology === 'bpco') return ['PM10', 'PM25'];
-		if (pathology === 'allergie') return ['NO2', 'PollenLevel'];
+		if (pathology === 'bronchite chronique') return ['NO2'];
+		if (pathology === 'enfant') return ['PM25', 'NO2', 'O3', 'PM10'];
+		if (pathology === 'senior') return ['PM25', 'NO2', 'O3', 'PM10'];
 		return ['PM25'];
+	}
+
+	function getCombinedPollutants(age: number, pathology?: string): string[] {
+		const set = new Set(getPollutantsByAge(age));
+
+		if (pathology) {
+			getPollutantsForPathology(pathology).forEach(p => set.add(p));
+		}
+
+		return Array.from(set);
 	}
 
 	const dummyData = Array.from({ length: 24 }, (_, h) => ({

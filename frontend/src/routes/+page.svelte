@@ -17,7 +17,6 @@
 	$: city = $page.url.searchParams.get('city') ?? '';
 	
 	const aqiCategories = [
-		
 		{ min: 0, max: 50, color: '#10b981', label: 'Bon', textColor: 'text-emerald-500' },
 		{ min: 51, max: 100, color: '#f59e0b', label: 'Modéré', textColor: 'text-amber-500' },
 		{ min: 101, max: 500, color: '#ef4444', label: 'Mauvais', textColor: 'text-red-500' }
@@ -138,10 +137,7 @@
 						{/each}
 					</div>
 				</div>
-				
 					<div id="map" class="z-0" bind:this={mapContainer}></div>
-
-				
 				<div class="p-4 text-sm text-slate-500 border-t border-slate-100">
 					Cliquez sur un marqueur pour voir les détails et prévisions pour la ville sélectionnée
 				</div>
