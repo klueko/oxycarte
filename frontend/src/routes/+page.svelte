@@ -113,7 +113,7 @@
 </script>
 
 <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
-	<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+	<div class="max-w-[110rem] mx-auto px-4 sm:px-6 lg:px-12 py-8">
 		<header class="mb-10 text-center">
 			<h1 class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
 				Oxycarte
@@ -126,7 +126,7 @@
 
 		<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 			<!-- Carte principale -->
-			<div class="lg:col-span-8 bg-white rounded-xl shadow-lg overflow-hidden">
+			<div class="md:col-span-7 lg:col-span-8 bg-white rounded-xl shadow-lg overflow-hidden">
 				<div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white flex justify-between items-center">
 					<h2 class="text-xl font-semibold">Carte interactive</h2>
 					<div class="flex items-center space-x-2 text-sm">
@@ -148,7 +148,7 @@
 			</div>
 
 			<!-- Panneau latéral d'informations -->
-			<div class="lg:col-span-4 space-y-6">
+			<div class="md:col-span-7 lg:col-span-4 space-y-6 overflow-y-auto max-h-[calc(100vh-10rem)] px-2">
 				<!-- Résumé de qualité de l'air -->
 				<div class="bg-white rounded-xl shadow-lg overflow-hidden">
 					<div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
@@ -215,21 +215,20 @@
 				
 				<!-- Widget de prévision -->
 				<div class="bg-white rounded-xl shadow-lg overflow-hidden">
-					<div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-						<h2 class="text-xl font-semibold">Prévisions</h2>
-					</div>
+					<a
+						href={`/graph?city=${encodeURIComponent(selectedCity ?? '')}`}
+						class="block p-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:underline hover:opacity-90"
+					>
+						<h2 class="text-xl font-semibold">
+							Prévisions – {selectedCity}
+							<span class="ml-2 text-sm font-light">(Agrandir)</span>
+						</h2>
+					</a>
 
 					{#if selectedCity}
-						<div class="p-5">
+						<div class="w-full" style="height: 400px;" >
 							{#key selectedCity}
 								<ChartComponent city={selectedCity} />
-								<a
-									href={`/graph?city=${encodeURIComponent(selectedCity)}`}
-									class="text-sm px-3 py-1 bg-blue-100 rounded hover:bg-blue-200"
-								>
-									Agrandir le graphique
-								</a>
-
 							{/key}
 						</div>
 					{:else}
@@ -274,7 +273,7 @@
 
 <style>
 	#map {
-		height: 60vh;
+		height: 75vh;
 		width: 100%;
 	}
 	
